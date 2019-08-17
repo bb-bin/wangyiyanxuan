@@ -43,6 +43,10 @@ const routes = [
         meta: {
           title: "个人"
         }
+      },
+      {
+        path: "",
+        redirect: "/home"
       }
     ]
   },

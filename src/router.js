@@ -1,23 +1,73 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Home from './views/Home.vue'
+import Vue from "vue";
 
-Vue.use(Router)
+import VueRouter from "vue-router";
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'home',
-      component: Home
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (about.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+Vue.use(VueRouter);
+
+const routes = [
+  {
+    path: "/",
+    component: () => import("./views/Home/index.vue"),
+    children: [
+      {
+        path: "/home",
+        component: () => import("./views/Home/home.vue"),
+        meta: {
+          title: "主页"
+        }
+      },
+      {
+        path: "/sort",
+        component: () => import("./views/Home/sort.vue"),
+        meta: {
+          title: "分类"
+        }
+      },
+      {
+        path: "/topic",
+        component: () => import("./views/Home/topic.vue"),
+        meta: {
+          title: "识物"
+        }
+      },
+      {
+        path: "/car",
+        component: () => import("./views/Home/car.vue"),
+        meta: {
+          title: "购物车"
+        }
+      },
+      {
+        path: "/center",
+        component: () => import("./views/Home/center.vue"),
+        meta: {
+          title: "个人"
+        }
+      },
+      {
+        path: "",
+        redirect: "/home"
+      }
+    ]
+  },
+  {
+    path: "/login",
+    component: () => import("./views/Login/index.vue"),
+    meta: {
+      title: "登录页"
     }
-  ]
-})
+  },
+  {
+    path: "/register",
+    component: () => import("./views/register/index.vue"),
+    meta: {
+      title: "注册页"
+    }
+  }
+];
+
+const router = new VueRouter({
+  routes
+});
+
+export default router;

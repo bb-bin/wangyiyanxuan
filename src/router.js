@@ -63,6 +63,10 @@ const routes = [
     meta: {
       title: "注册页"
     }
+  },
+  {
+    path: "/product",
+    component: () => import("./views/Home/product.vue")
   }
 ];
 

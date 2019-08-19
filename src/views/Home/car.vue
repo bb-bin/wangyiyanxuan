@@ -10,13 +10,13 @@
     <div>
       <ul class="wy-service">
         <li>
-          <span>&nbsp&nbsp30天无忧退货</span>
+          <span>&nbsp;&nbsp;30天无忧退货</span>
         </li>
         <li>
-          <span>&nbsp&nbsp48小时快速退款</span>
+          <span>&nbsp;&nbsp;48小时快速退款</span>
         </li>
         <li>
-          <span>&nbsp&nbsp满88元免邮费</span>
+          <span>&nbsp;&nbsp;满88元免邮费</span>
         </li>
       </ul>
     </div>
@@ -59,6 +59,8 @@
 </template>
 
 <script>
+import request from "../../utils/request";
+
 export default {
   data() {
     return {
@@ -69,7 +71,20 @@ export default {
   methods: {
     onSubmit() {
       console.log("提交订单事件");
+    },
+    getBrand() {
+      request
+        .get("http://129.204.72.71:8000/api/item/detail?id=3452043")
+        .then(res => {
+          // if(res.code === '200'){
+          console.log(res);
+          // }
+        });
     }
+  },
+
+  created() {
+    this.getBrand();
   }
 };
 </script>
@@ -143,10 +158,29 @@ export default {
   .car_goods_check {
     width: 42px;
     height: 42px;
+    position: relative;
 
     input {
-      width: 42px;
-      height: 42px;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      margin: 0;
+    }
+
+    span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 19px;
+      height: 19px;
+      background-repeat: no-repeat;
+      background-size: 100%;
+      background-image: url("../../assets/img/check-1.png");
+    }
+
+    input:checked + span {
+      background: url("../../assets/img/check-2.png");
     }
   }
 
@@ -185,7 +219,7 @@ export default {
     right: 0px;
     bottom: 0px;
     text-align: center;
-    line-height: 24px;
+    line-height: 26px;
 
     input {
       width: 30px;

@@ -24,6 +24,7 @@
       <li class="car_goods">
         <div class="car_goods_check">
           <input type="checkbox" />
+          <span></span>
         </div>
         <div class="car_goods_img">
           <img
@@ -57,6 +58,21 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      checked: true
+    };
+  },
+
+  methods: {
+    onSubmit() {
+      console.log("提交订单事件");
+    }
+  }
+};
+</script>
 
 <style lang="scss">
 .wy-car {

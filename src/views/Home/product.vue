@@ -7,7 +7,17 @@
       </van-swipe-item>
       <div class="custom-indicator" slot="indicator">{{ current + 1 }}/4</div>
     </van-swipe>
-    <div></div>
+    <div class="wy-characteristic" v-for="(item, index) in characteristicListUrl" :key="index">
+      <div class="item">
+        <div class="left">
+          <img :src="item" />
+        </div>
+        <div class="right">
+          <p class="text"></p>
+          <p class="text"></p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -20,7 +30,8 @@ export default {
   data() {
     return {
       current: 0,
-      imgUrl: {}
+      imgUrl: {},
+      characteristicListUrl: []
     };
   },
 
@@ -41,6 +52,10 @@ export default {
             delete res.data.itemDetail.videoInfo;
 
             this.imgUrl = res.data.itemDetail;
+
+            let picUrl = res.data.characteristicList.map(item => item.picUrl);
+            this.characteristicListUrl = picUrl;
+            console.log(this.characteristicListUrl);
           }
         });
     }

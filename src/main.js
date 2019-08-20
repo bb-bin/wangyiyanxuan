@@ -2,13 +2,16 @@ import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
 import store from "./store";
-import { SubmitBar, Checkbox, CheckboxGroup, Swipe, SwipeItem } from "vant";
+import { SubmitBar, Checkbox, CheckboxGroup, Swipe, SwipeItem, Search  } from "vant";
 
 import "./assets/style/base.scss";
 
 Vue.use(SubmitBar)
   .use(Checkbox)
-  .use(CheckboxGroup);
+  .use(CheckboxGroup)
+  .use(Swipe)
+  .use(SwipeItem)
+  .use(Search);
 
 Vue.config.productionTip = false;
 

@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Tabbar from "../../components/Tabbar/index.vue";
+import Tabbar from "../../components/Tabbar/index";
 
 export default {
   name: "Ind",

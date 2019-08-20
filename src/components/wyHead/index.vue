@@ -35,7 +35,7 @@
     margin-right: 10px;
     font-size: 24px;
   }
-
+  
   .icongouwuche {
     font-size: 24px;
   }

@@ -3,7 +3,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 
 import car from "./modules/car";
-import product from "./modules/produect";
+import product from "./modules/product";
 
 Vue.use(Vuex);
 

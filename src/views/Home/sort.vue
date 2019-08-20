@@ -17,72 +17,81 @@
           </ul>
         </div>
         <div class="right">
-          <img src="../../../public/img/singbanner.jpg" alt="">
+          <!-- <img src="../../../public/img/singbanner.jpg" alt=""> -->
+          <!-- <img v-for="item in sorts" :key="item.bannerUrl" :src="item.bannerUrl" alt=""> -->
           <div class="right_list">
             <ul>
               <li>
-                <img src="../../../public/img/singicon.png" alt="">
-                <p>员工精选好货</p>
+                <router-link to='/lists' class="actives">
+                  <img src="../../../public/img/singicon.png" alt="">
+                  <p>员工精选好货</p>
+                </router-link>
               </li>
               <li>
-                <img src="../../../public/img/singicon.png" alt="">
-                <p>员工精选好货</p>
+                <router-link to='/lists' class="actives">
+                  <img src="../../../public/img/singicon.png" alt="">
+                  <p>员工精选好货</p>
+                </router-link>
               </li>
               <li>
-                <img src="../../../public/img/singicon.png" alt="">
-                <p>员工精选好货</p>
+                <router-link to='/lists' class="actives">
+                  <img src="../../../public/img/singicon.png" alt="">
+                  <p>员工精选好货</p>
+                </router-link>
               </li>
               <li>
-                <img src="../../../public/img/singicon.png" alt="">
-                <p>员工精选好货</p>
+                <router-link to='/lists' class="actives">
+                  <img src="../../../public/img/singicon.png" alt="">
+                  <p>员工精选好货</p>
+                </router-link>
               </li>
               <li>
-                <img src="../../../public/img/singicon.png" alt="">
-                <p>员工精选好货</p>
+                <router-link to='/lists' class="actives">
+                  <img src="../../../public/img/singicon.png" alt="">
+                  <p>员工精选好货</p>
+                </router-link>
               </li>
               <li>
-                <img src="../../../public/img/singicon.png" alt="">
-                <p>员工精选好货</p>
+                <router-link to='/lists' class="actives">
+                  <img src="../../../public/img/singicon.png" alt="">
+                  <p>员工精选好货</p>
+                </router-link>
               </li>
               <li>
-                <img src="../../../public/img/singicon.png" alt="">
-                <p>员工精选好货</p>
+                <router-link to='/lists' class="actives">
+                  <img src="../../../public/img/singicon.png" alt="">
+                  <p>员工精选好货</p>
+                </router-link>
               </li>
               <li>
-                <img src="../../../public/img/singicon.png" alt="">
-                <p>员工精选好货</p>
+                <router-link to='/lists' class="actives">
+                  <img src="../../../public/img/singicon.png" alt="">
+                  <p>员工精选好货</p>
+                </router-link>
               </li>
               <li>
-                <img src="../../../public/img/singicon.png" alt="">
-                <p>员工精选好货</p>
+                <router-link to='/lists' class="actives">
+                  <img src="../../../public/img/singicon.png" alt="">
+                  <p>员工精选好货</p>
+                </router-link>
               </li>
               <li>
-                <img src="../../../public/img/singicon.png" alt="">
-                <p>员工精选好货</p>
+                <router-link to='/lists' class="actives">
+                  <img src="../../../public/img/singicon.png" alt="">
+                  <p>员工精选好货</p>
+                </router-link>
               </li>
               <li>
-                <img src="../../../public/img/singicon.png" alt="">
-                <p>员工精选好货</p>
+                <router-link to='/lists' class="actives">
+                  <img src="../../../public/img/singicon.png" alt="">
+                  <p>员工精选好货</p>
+                </router-link>
               </li>
               <li>
-                <img src="../../../public/img/singicon.png" alt="">
-                <p>员工精选好货</p>
-              </li>
-              <li>
-                <img src="../../../public/img/singicon.png" alt="">
-                <p>员工精选好货</p>
-              </li>
-              <li>
-                <img src="../../../public/img/singicon.png" alt="">
-                <p>员工精选好货</p>
-              </li>
-              <li>
-                <img src="../../../public/img/singicon.png" alt="">
-                <p>员工精选好货</p>
-              </li>
-              <li>
-                <img src="../../../public/img/singicon.png" alt="">
-                <p>员工精选好货</p>
+                <router-link to='/lists' class="actives">
+                  <img src="../../../public/img/singicon.png" alt="">
+                  <p>员工精选好货</p>
+                </router-link>
               </li>
             </ul>
           </div>
@@ -104,7 +113,6 @@ export default {
     return{
       sorts: {},
       sortId: '',
-      // lists:{},
     }
   },
 
@@ -120,17 +128,10 @@ export default {
           console.log(res);
         }
 
-        // 初始化
-        new BScroll(this.$refs['left'])
+        // 初始化 需要设置 {click: true}否则不能点击
+        new BScroll(this.$refs['left'],{click: true})
       })
     },
-    // getLists(){
-    //   request
-    //   .get('http://129.204.72.71:8000/api/category/listmap')
-    //   .then(res => {
-    //     console.log(res)
-    //   })
-    // },
 
     fn1(id){
       this.sortId = id
@@ -157,7 +158,7 @@ export default {
     .left{
       width: 80px;
       margin: 20px 0 50px;
-      overflow-y: auto;
+      overflow: hidden;
       height: 100%;
       box-sizing: border-box;
 
@@ -191,11 +192,6 @@ export default {
       overflow-y: auto;
       height: 100%;
       
-      >img{
-        width: 264px;
-        height: 96px;
-      }
-
       .right_list ul li{
         width: 72px;
         height: 108px;
@@ -203,7 +199,7 @@ export default {
         text-align: center;
         margin-right: 10px;
 
-        >img{
+        img{
           width: 100%;
         }
 

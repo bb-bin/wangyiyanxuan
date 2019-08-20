@@ -21,7 +21,7 @@ const routes = [
         component: () => import("./views/Home/sort.vue"),
         meta: {
           title: "分类"
-        }
+        },
       },
       {
         path: "/topic",
@@ -43,6 +43,10 @@ const routes = [
         meta: {
           title: "个人"
         }
+      },
+      {
+        path: '/lists',
+        component: () => import('./utils/sorts/lists.vue'),
       },
       {
         path: "",

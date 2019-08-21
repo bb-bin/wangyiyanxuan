@@ -18,7 +18,7 @@
         </div>
         <div class="right">
           <!-- <img src="../../../public/img/singbanner.jpg" alt=""> -->
-          <!-- <img v-for="item in sorts" :key="item.bannerUrl" :src="item.bannerUrl" alt=""> -->
+          <img v-for="item in sorts" :key="item.id" :src="item.wapBannerUrl" alt="">
           <div class="right_list">
             <ul>
               <li>
@@ -113,12 +113,13 @@ export default {
     return{
       sorts: {},
       sortId: '',
+      // lies:{},
     }
   },
 
   // 方法写在methods里
   methods: {
-    // 获取左侧列表数据 获取数据需要在created里调用执行这个方法
+    // 获取左侧列表数据 获取数据需要在 created 里调用执行这个方法
     getSorts(){
       request
       .get('http://129.204.72.71:8000/api/category/listmap')
@@ -128,8 +129,21 @@ export default {
           console.log(res);
         }
 
-        // 初始化 需要设置 {click: true}否则不能点击
+        // 初始化 
+        // 需要设置 {click: true}否则不能点击
         new BScroll(this.$refs['left'],{click: true})
+      })
+    },
+
+    getlies(){
+      request
+      .get('http://129.204.72.71:8000/api/home/catelist/itemlist',{
+
+      }).then(res => {
+        if(res.status === 1){
+          this.lies = res.data
+          console.log(res);
+        }
       })
     },
 
@@ -141,7 +155,7 @@ export default {
   created(){
     // 执行
     this.getSorts()
-    // this.getList()
+    this.getlies()
   }
 }
 </script>
@@ -191,6 +205,11 @@ export default {
       padding: 10px 10px 5px;
       overflow-y: auto;
       height: 100%;
+
+      >img{
+        width: 100%;
+        // height: 100px;
+      }
       
       .right_list ul li{
         width: 72px;

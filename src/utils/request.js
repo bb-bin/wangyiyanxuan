@@ -1,6 +1,5 @@
 import axios from "axios";
 import { Toast } from "vant";
-import { Promise } from "q";
 
 const request = axios.create({
   baseURL: "http://129.204.72.71:8000"

@@ -2,7 +2,7 @@
   <div class="wy-product">
     <wyHead />
 
-    <van-swipe @change="onChange" class="vant-parent">
+    <van-swipe @change="onChange" class="vant-parent" :autoplay="6000">
       <van-swipe-item v-for="(url,value) in imgUrl" :key="value">
         <img class="wy-product_img" :src="url" />
       </van-swipe-item>
@@ -63,9 +63,9 @@
       限制：特价商品不可与优惠券叠加使用
       <i class="iconfont iconjiantouyou"></i>
     </div>
-    <div class="deliveryInfo">
+    <div class="deliveryInfo" @click="getAddress">
       配送：
-      <input type="text" placeholder="请选择配送地址" />
+      <input type="text" placeholder="请选择配送地址" ref="address" />
       <i class="iconfont iconjiantouyou"></i>
     </div>
     <div class="serviceEntry">
@@ -101,23 +101,38 @@
       <div class="CustomerService">
         <i class="iconfont iconkefu"></i>
       </div>
-      <div>立即购买</div>
-      <div>加入购物车</div>
+      <div class="buy">立即购买</div>
+      <div class="add">加入购物车</div>
     </div>
+
+    <van-area
+      :area-list="areaList"
+      title="配送至"
+      class="address"
+      @cancel="closeAddress"
+      @confirm="getAddressMsg"
+      v-if="address"
+    />
+
+    <div class="Mask" v-if="address" @click="closeAddress"></div>
   </div>
 </template>
 
 <script>
 import wyHead from "../../components/wyHead/index.vue";
 import request from "../../utils/request";
-import { mapActions, mapMutations, mapState, mapGetters } from "vuex";
+import { mapActions, mapMutations, mapState } from "vuex";
+import areaList from "../../assets/area/index";
 
 export default {
   name: "products",
 
   data() {
     return {
-      current: 0
+      current: 0,
+      areaList,
+      address: false,
+      addressMsg: []
     };
   },
 
@@ -136,6 +151,50 @@ export default {
     ...mapActions("product", ["getImgUrl"]),
     onChange(index) {
       this.current = index;
+    },
+
+    getAddress() {
+      this.address = true;
+
+      document.documentElement.scrollTop = 0;
+
+      this.stop();
+    },
+
+    closeAddress() {
+      this.address = false;
+      this.move();
+    },
+
+    getAddressMsg(data) {
+      console.log(data);
+      // this.addressMsg = data;
+      let addr = [];
+      data.forEach(item => {
+        addr.push(item.name);
+      });
+      console.log(addr);
+      this.$refs["address"].value = addr.join(",");
+
+      this.closeAddress();
+    },
+
+    /***滑动限制***/
+    stop() {
+      var mo = function(e) {
+        e.preventDefault();
+      };
+      document.body.style.overflow = "hidden";
+      document.addEventListener("touchmove", mo, false); //禁止页面滑动
+    },
+
+    /***取消滑动限制***/
+    move() {
+      var mo = function(e) {
+        e.preventDefault();
+      };
+      document.body.style.overflow = ""; //出现滚动条
+      document.removeEventListener("touchmove", mo, false);
     }
   },
 
@@ -159,6 +218,7 @@ export default {
 
   .vant-parent {
     position: relative;
+    margin-top: 44px;
 
     .custom-indicator {
       position: absolute;
@@ -433,6 +493,7 @@ export default {
   .commonIssues {
     background: #fff;
     padding: 0 15px 15px;
+    margin-bottom: 52px;
 
     .tt {
       text-align: center;
@@ -475,11 +536,45 @@ export default {
     background-color: #fff;
     width: 100%;
     display: flex;
+    text-align: center;
+    line-height: 52px;
+    color: #333;
 
     .CustomerService {
       width: 78px;
       height: 52px;
     }
+
+    .iconkefu {
+      font-size: 30px;
+    }
+
+    .buy {
+      flex: 1;
+    }
+
+    .add {
+      flex: 1;
+      color: #fff;
+      background-color: #b4282d;
+    }
+  }
+
+  .address {
+    position: fixed;
+    bottom: 0;
+    z-index: 9999;
+    width: 100%;
+  }
+
+  .Mask {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    opacity: 0.3;
+    position: fixed;
+    left: 0;
+    top: 0;
   }
 }
 </style>

@@ -53,7 +53,7 @@
         <i class="iconfont iconjiantouyou"></i>
       </div>
 
-      <div class="inner">
+      <div class="inner" @click="toSelect">
         请选择规格数量
         <i class="iconfont iconjiantouyou"></i>
       </div>
@@ -174,9 +174,15 @@ export default {
         addr.push(item.name);
       });
       console.log(addr);
-      this.$refs["address"].value = addr.join(",");
+      this.$refs["address"].value = addr.join(" ");
 
       this.closeAddress();
+    },
+
+    toSelect() {
+      document.documentElement.scrollTop = 0;
+
+      this.$router.push("/productSelect");
     },
 
     /***滑动限制***/
@@ -539,10 +545,10 @@ export default {
     text-align: center;
     line-height: 52px;
     color: #333;
+    height: 52px;
 
     .CustomerService {
       width: 78px;
-      height: 52px;
     }
 
     .iconkefu {

@@ -47,6 +47,10 @@ export default {
     height: 100%;
     text-decoration: none;
     color: #666;
+
+    &.router-link-active {
+      color: #b4282b;
+    }
   }
 
   .iconfont {

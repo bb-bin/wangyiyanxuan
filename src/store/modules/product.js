@@ -30,6 +30,9 @@ export default {
         item => item.simpleDescList
       );
       state.data = payload.data;
+    },
+    setData(state, payload) {
+      state.data = payload.data;
     }
   },
 
@@ -46,6 +49,21 @@ export default {
 
           if (res.status === 0) {
             commit("setImgUrl", res);
+          }
+        });
+    },
+    getData({ commit }) {
+      request
+        .get("/api/item/detail", {
+          params: {
+            id: 3452043
+          }
+        })
+        .then(res => {
+          console.log(res);
+
+          if (res.status === 0) {
+            commit("setData", res);
           }
         });
     }

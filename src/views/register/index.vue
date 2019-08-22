@@ -12,24 +12,9 @@
           </a>
         </div>
       </header>
-      <div class="con">
-        <el-form-item label="用户名" prop="userName">
-          <el-input type="text" v-model="registerForm.userName" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="密码" prop="password">
-          <el-input type="password" v-model="registerForm.password" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item label="确认密码" prop="rePassword">
-          <el-input type="password" v-model="registerForm.rePassword" autocomplete="off"></el-input>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="submitForm('registerForm')">同意以下协议并注册</el-button>
-            <a class="f1" href="http://www.meituan.com/about/terms" target="_blank">《美团网用户协议》</a>
-        </el-form-item>
-      </div>
     </div>
   <div class="content">
-    <el-form :model="registerForm" status-icon :rules="rules" ref="registerForm" label-width="80px" class="demo-ruleForm">
+    <el-form :model="registerForm" status-icon :rules="rules" ref="registerForm" class="demo-ruleForm">
       <el-form-item label="用户名" prop="userName">
         <el-input type="text" v-model="registerForm.userName" autocomplete="off"></el-input>
       </el-form-item>
@@ -136,24 +121,21 @@ export default {
 </script>
 
 
-
-
 <style lang="scss">
 
-  a{
-    color: #333;
-  }
   .page-register{
     background: #F2F5F4;
     width: 100%;
     height: 100%;
+    overflow: hidden;
   }
-  header{
-      width: 375px;
+  .header{
+      // width: 375px;
       height: 45px;
       margin: 0 auto;
-      padding: 10px 8px 0;
+      padding: 30px 20px;
       box-sizing: border-box;
+      margin-bottom: 30px;
   }
   img{
       height: 45px;
@@ -161,23 +143,29 @@ export default {
       float: left;
     }
   .login{
-      height: 45px;
-      // width: 100px;
+      height: 45px; 
       line-height: 45px;
       float: right;
       font-size: 20px;
     }
-  .con{
-    width: 375px;
+    .login a {
+      color: red;
+      font-size: 20px;
+    }
+  .content{
+    // width: 375px;
+    width: 100%;
     margin-top: 20px;
     min-height: 30px;
-    margin-right: 10px;
-    // margin: 0 auto;
-    // text-align: left;
+    padding:0 20px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    .btn{
+      margin-top: 30px;
+      text-align: center;
+    }
   }
-  .btn{
-    margin-top: 80px;
-  }
+  
   .footer-mini{
   position: absolute;
   bottom: 30px;
@@ -187,7 +175,7 @@ export default {
     text-align: center;
   }
 
-
+  
 
 </style>
 

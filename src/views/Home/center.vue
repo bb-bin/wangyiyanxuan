@@ -1,6 +1,14 @@
 <template>
   <div class="page-home-center">
-    <div class="avatar">
+     <div class="avatar" v-if="userInfo">
+      <div class="avator-icon">
+        <img :src="userInfo.avatar" />
+        <!-- <input type="file" @change="handleUpdAvatar" /> -->
+      </div>
+      <div class="nick-name">{{ userInfo.username }}</div>
+    </div>
+
+    <div class="avatar" v-else>
       <div class="avator-icon">
         <img src="https://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png" />
       </div>
@@ -94,24 +102,34 @@
             </a>
           </div>
           <div class="login-nav"></div>
-          <wy-tabbar />
+          <Tabbar />
         </div>
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
-
+import Tabbar from '../../components/Tabbar/index';
 export default {
-  name: "center"
+  name: "center",
+  computed: {
+    ...mapState('user', ['userInfo'])
+  },
+  components: {
+    Tabbar
+  },
 };
 </script>
 <style lang="scss">
+
+
+        .page-home-center{
+          overflow: hidden;
+          overflow-y: auto;
+        }
         .page-home-center .avatar {
           text-align: center;
-          /* margin-top: -64px; */
           height: 135px;
           padding-left: 22px;
-          /* padding-top: 24px; */
           background: url(https://yanxuan.nosdn.127.net/d069279e5834bbca17065a9855a014bf.png);
           background-size: cover;
           display: flex;
@@ -119,117 +137,113 @@ export default {
           color: #fff;
         }
         .page-home-center .avatar .avator-icon {
-            position: relative;
-            width: 63px;
-            height: 63px;
-            border-radius: 35px;
-            margin-right: 20px;
-            border: 2px solid #fff;
+          position: relative;
+          width: 63px;
+          height: 63px;
+          border-radius: 35px;
+          margin-right: 20px;
+          border: 2px solid #fff;
         }
         .page-home-center .avatar .avator-icon img {
-            display: block;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
+          display: block;
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
         }
         .page-home-center .avatar .avator-icon input {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
         }
         .page-home-center .avatar .nick-name {
-            font-size: 16px;
+          font-size: 16px;
         }
         .my-order-tab {
-            width: 100%;
-            margin: 0 auto;
-            display: flex;
-            text-align: center;
-            font-size: 13px;
-            padding: 0;
-            height: 79px;
-            background: #fff;
-            align-items: center;
-            border-bottom: 1px solid #ccc;
+          width: 100%;
+          margin: 0 auto;
+          display: flex;
+          text-align: center;
+          font-size: 13px;
+          padding: 0;
+          height: 79px;
+          background: #fff;
+          align-items: center;
+          border-bottom: 1px solid #ccc;
         }
         .my-order-tab li {
-            position: relative;
-            flex: 1;
-            list-style: none;
+          position: relative;
+          flex: 1;
+          list-style: none;
         }
         .my-order-tab .iconfont {
-            font-size: 26px;
-            }
+          font-size: 26px;
+        }
         .my-order-tab .common-p {
-            margin-top: 10px;
-            color: #797d82;
-            }
+          margin-top: 10px;
+          color: #797d82;
+          }
         .margin-set {
-            position: relative;
-            background: #fff;
-            padding: 0 15px;
-            height: 49px;
-            display: flex;
-            align-items: center;
+          position: relative;
+          background: #fff;
+          padding: 0 15px;
+          height: 49px;
+          display: flex;
+          align-items: center;
         }
         .margin-set a {
-            font-size: 16px;
-            margin-left: 15px;
-            color: #191a1b;
-            flex: 1;
-            text-align: center;
-            cursor: pointer;
-          }
+          font-size: 16px;
+          margin-left: 15px;
+          color: #f40;
+          flex: 1;
+          text-align: center;
+        }
         .margin-set ::after {
-            content: " ";
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            height: 1px;
-            border-bottom: 1px solid #ededed;
-            color: #ededed;
-            transform-origin: 0 100%;
-            transform: scaleY(0.5);
-            left: 13px;
-          }
+          content: " ";
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          height: 1px;
+          border-bottom: 1px solid #ededed;
+          color: #ededed;
+          transform-origin: 0 100%;
+          transform: scaleY(0.5);
+          left: 13px;
+        }
+        .login-nav{
+            height: 5px;
+            background: #ccc;
+        }
+        .login-con{
+          width: 375px;
+          margin: 0 auto;
+          display: flex;
+          flex-direction: column;
+          border-top: 1px solid #ccc;
+        }
+        .login-con .login-ul li{
+          width: 33.3333%;
+          float: left;
+          height: 90px;
+          text-align: center;
+          border-right: 1px solid #ccc;
+          border-bottom: 1px solid #ccc;
+          box-sizing: border-box;
+          padding-top: 22px;
+        }
+        .login-con .login-ul li a .iconfont{
+          color: #bbb;
+          font-size: 26px;
+        }
+        .login-con .login-ul li a span{
+            display: block;
+            margin-top: 10px;
+        }
 
-          .login-nav{
-              height: 5px;
-              background: #ccc;
-          }
-
-          .login-con{
-              width: 375px;
-              margin: 0 auto;
-              display: flex;
-            flex-direction: column;
-            border-top: 1px solid #ccc;
-          }
-          .login-con .login-ul li{
-            width: 33.3333%;
-            float: left;
-            height: 90px;
-            text-align: center;
-            border-right: 1px solid #ccc;
-            border-bottom: 1px solid #ccc;
-            box-sizing: border-box;
-            padding-top: 22px;
-          }
-          /* .login-con .login-ul li:nth-child(3){
-              border-right: none;
-          } */
-          .login-con .login-ul li a .iconfont{
-            color: #bbb;
-            font-size: 26px;
-          }
-          .login-con .login-ul li a span{
-              display: block;
-              margin-top: 3px;
-          }
-
-
+        .wy-tabbar{
+          display: fixed;
+        }
       </style>

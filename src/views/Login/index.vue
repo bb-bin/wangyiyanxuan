@@ -59,7 +59,7 @@ export default {
     return {
       username: "",
       password: ""
-    };
+    }
   },
   methods: {
     ...mapActions("user", ["handleLogin"])

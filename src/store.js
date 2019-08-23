@@ -13,10 +13,7 @@ export default new Vuex.Store({
   modules: {
     car,
     product,
-<<<<<<< HEAD
-    productList
-=======
+    productList,
     user
->>>>>>> 2c605a7ecd764e522624bc342305d282ca5f59e8
   }
 });

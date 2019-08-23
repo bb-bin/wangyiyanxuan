@@ -17,11 +17,11 @@ const routes = [
         }
       },
       {
-        path: "/sort",
+        path: "/sort/:id?",
         component: () => import("./views/Home/sort.vue"),
         meta: {
           title: "分类"
-        }
+        },
       },
       {
         path: "/topic",
@@ -45,6 +45,10 @@ const routes = [
         }
       },
       {
+        path: '/lists',
+        component: () => import('./utils/sorts/lists.vue'),
+      },
+      {
         path: "",
         redirect: "/home"
       }
@@ -66,7 +70,11 @@ const routes = [
   },
   {
     path: "/product",
-    component: () => import("./views/Home/product.vue")
+    component: () => import("./views/product/product.vue")
+  },
+  {
+    path: "/productSelect",
+    component: () => import("./views/product/productSelect.vue")
   }
 ];
 

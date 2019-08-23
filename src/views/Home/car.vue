@@ -21,54 +21,68 @@
       </ul>
     </div>
     <ul class="car_goods_list">
-      <li class="car_goods">
+      <li class="car_goods" v-for="(item,index) in cars" :key="item.data.id">
         <div class="car_goods_check">
-          <input type="checkbox" />
+          <input type="checkbox" :value="item.data.id" v-model="checkedIds" />
           <span></span>
         </div>
         <div class="car_goods_img">
-          <img
-            src="https://yanxuan-item.nosdn.127.net/e548e0cbf276b3569ebfdfc1df75988b.png?imageView&thumbnail=160x0&quality=75"
-          />
+          <img :src="item.data.primaryPicUrl" />
         </div>
         <div class="car_goods_box">
-          <p>
-            <span>抄底特惠</span>平滑密编清凉仿藤坐垫
+          <p class="goods_tet">
+            <span class="goods_txt">{{ item.data.promotionDesc }}</span>
+            {{ item.data.name }}
           </p>
-          <span class="goods_type">古藤色</span>
+          <span class="goods_type">{{ item.checkSizeNum1 }}</span>
           <div class="goods_price">
-            <span>￥26.9</span>
-            <span>￥29.9</span>
+            <span>￥{{ item.data.retailPrice }}</span>
+            <s>￥{{ item.data.counterPrice }}</s>
           </div>
           <div class="goods_selNum">
-            <span class="goods_less">-</span>
-            <input type="text" value="1" />
-            <span class="goods_more">+</span>
+            <span class="goods_less" @click="less(cars[index])">-</span>
+            <input type="text" v-model="item.checkNum" />
+            <span class="goods_more" @click="more(cars[index])">+</span>
           </div>
         </div>
       </li>
     </ul>
-    <van-submit-bar :price="3050" button-text="提交订单" @submit="onSubmit">
+    <van-submit-bar :price="total*100" button-text="提交订单" @submit="onSubmit">
       <van-checkbox v-model="checked">全选</van-checkbox>
-      <span slot="tip">
-        你的收货地址不支持同城送,
-        <span>修改地址</span>
-      </span>
     </van-submit-bar>
   </div>
 </template>
 
 <script>
 import request from "../../utils/request";
+import { mapState, mapGetters, mapMutations } from "vuex";
 
 export default {
   data() {
     return {
-      checked: true
+      checked: false,
+      goodsNum: this.$store.state.car.cars[0]
+        ? this.$store.state.car.cars[0].checkNum
+        : 1
     };
   },
 
+  computed: {
+    ...mapState("car", ["cars"]),
+    ...mapGetters("car", ["total"]),
+    checkedIds: {
+      get() {
+        return this.$store.state.car.checkedIds;
+      },
+      set(value) {
+        console.log(value);
+        this.$store.commit("car/setCheckedIds", value);
+      }
+    }
+  },
+
   methods: {
+    ...mapMutations("car", ["more", "less"]),
     onSubmit() {
       console.log("提交订单事件");
     },
@@ -85,14 +99,17 @@ export default {
 
   created() {
     this.getBrand();
+    console.log(this.$store.state.car);
   }
 };
 </script>
 
 <style lang="scss">
 .wy-car {
+  height: 100%;
   display: flex;
   flex-direction: column;
+
   .wy-car_top {
     width: 100%;
     display: flex;
@@ -143,6 +160,9 @@ export default {
 
   .car_goods_list {
     flex: 1;
+    overflow-y: auto;
+    padding-bottom: 50px;
+    box-sizing: border-box;
   }
 
   .car_goods {
@@ -177,10 +197,13 @@ export default {
       background-repeat: no-repeat;
       background-size: 100%;
       background-image: url("../../assets/img/check-1.png");
+      z-index: -1;
     }
 
     input:checked + span {
       background: url("../../assets/img/check-2.png");
+      background-repeat: no-repeat;
+      background-size: 100%;
     }
   }
 
@@ -195,6 +218,14 @@ export default {
     }
   }
 
+  .goods_tet {
+    line-height: 16px;
+  }
+
+  .goods_txt {
+    color: #f48f18;
+  }
+
   .car_goods_box {
     position: relative;
     width: 221px;
@@ -206,12 +237,18 @@ export default {
   }
 
   .goods_type {
-    line-height: 44px;
+    line-height: 30px;
     font-size: 12px;
+    color: #7f7f7f;
   }
 
   .goods_price {
     line-height: 36px;
+
+    s {
+      font-size: 12px;
+      color: #999;
+    }
   }
 
   .goods_selNum {

@@ -4,19 +4,36 @@
     <router-link to="#" class="wy-product_title">网易严选</router-link>
     <div>
       <i class="iconfont iconfangdajing"></i>
-      <i class="iconfont icongouwuche"></i>
+      <i class="iconfont icongouwuche" @click="toCar"></i>
     </div>
   </div>
 </template>
 
+<script>
+export default {
+  name: "myHead",
+
+  methods: {
+    toCar() {
+      this.$router.push("/car");
+    }
+  }
+};
+</script>
+
 <style lang="scss">
 .wy-product_head {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 999;
+  box-sizing: border-box;
   height: 44px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 8px 0 12px;
-  position: relative;
 
   .wy-product_title {
     font-size: 20px;
@@ -35,7 +52,7 @@
     margin-right: 10px;
     font-size: 24px;
   }
-  
+
   .icongouwuche {
     font-size: 24px;
   }

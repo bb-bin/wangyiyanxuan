@@ -17,7 +17,7 @@ const routes = [
         }
       },
       {
-        path: "/sort",
+        path: "/sort/:id?",
         component: () => import("./views/Home/sort.vue"),
         meta: {
           title: "分类"

@@ -8,89 +8,18 @@
             <li 
               v-for="item in sorts" 
               :key="item.id" 
-              :class="{'active': item.id === sortId}"
+              :class="{'active': item.id === sortId }"
               @click="fn1( item.id )">{{ item.name }}</li>
-              <li></li>
-              <li></li>
-              <li></li>
-              <li></li>
           </ul>
         </div>
         <div class="right">
-          <!-- <img src="../../../public/img/singbanner.jpg" alt=""> -->
-          <img v-for="item in sorts" :key="item.id" :src="item.wapBannerUrl" alt="">
+          <img src="../../../public/img/singbanner.jpg" alt="">
           <div class="right_list">
             <ul>
-              <li>
+              <li v-for="item in rightData" :key="item.id">
                 <router-link to='/lists' class="actives">
-                  <img src="../../../public/img/singicon.png" alt="">
-                  <p>员工精选好货</p>
-                </router-link>
-              </li>
-              <li>
-                <router-link to='/lists' class="actives">
-                  <img src="../../../public/img/singicon.png" alt="">
-                  <p>员工精选好货</p>
-                </router-link>
-              </li>
-              <li>
-                <router-link to='/lists' class="actives">
-                  <img src="../../../public/img/singicon.png" alt="">
-                  <p>员工精选好货</p>
-                </router-link>
-              </li>
-              <li>
-                <router-link to='/lists' class="actives">
-                  <img src="../../../public/img/singicon.png" alt="">
-                  <p>员工精选好货</p>
-                </router-link>
-              </li>
-              <li>
-                <router-link to='/lists' class="actives">
-                  <img src="../../../public/img/singicon.png" alt="">
-                  <p>员工精选好货</p>
-                </router-link>
-              </li>
-              <li>
-                <router-link to='/lists' class="actives">
-                  <img src="../../../public/img/singicon.png" alt="">
-                  <p>员工精选好货</p>
-                </router-link>
-              </li>
-              <li>
-                <router-link to='/lists' class="actives">
-                  <img src="../../../public/img/singicon.png" alt="">
-                  <p>员工精选好货</p>
-                </router-link>
-              </li>
-              <li>
-                <router-link to='/lists' class="actives">
-                  <img src="../../../public/img/singicon.png" alt="">
-                  <p>员工精选好货</p>
-                </router-link>
-              </li>
-              <li>
-                <router-link to='/lists' class="actives">
-                  <img src="../../../public/img/singicon.png" alt="">
-                  <p>员工精选好货</p>
-                </router-link>
-              </li>
-              <li>
-                <router-link to='/lists' class="actives">
-                  <img src="../../../public/img/singicon.png" alt="">
-                  <p>员工精选好货</p>
-                </router-link>
-              </li>
-              <li>
-                <router-link to='/lists' class="actives">
-                  <img src="../../../public/img/singicon.png" alt="">
-                  <p>员工精选好货</p>
-                </router-link>
-              </li>
-              <li>
-                <router-link to='/lists' class="actives">
-                  <img src="../../../public/img/singicon.png" alt="">
-                  <p>员工精选好货</p>
+                  <img :src="item.wapBannerUrl" alt="">
+                  <p>{{ item.name }}</p>
                 </router-link>
               </li>
             </ul>
@@ -111,9 +40,31 @@ export default {
 
   data(){
     return{
-      sorts: {},
-      sortId: '',
-      // lies:{},
+      sorts: [], // 左侧数据
+      sortId: '', // 当前选中的分类
+      buys: [], // 右侧的所有数据
+    }
+  },
+
+  computed: {
+    rightData() {
+      let result = [];
+
+      let obj = this.buys.find(item => {
+        return item.id === this.sortId
+      }) 
+
+      result = obj ? obj.subCateList : [];
+      return result;
+    }
+  },
+  // 监听 sortId 变化
+  watch: {
+    $route: {
+      handler(newVal) {
+        // 修改 sortId
+        this.sortId = parseInt(newVal.params.id)
+      },
     }
   },
 
@@ -125,37 +76,39 @@ export default {
       .get('http://129.204.72.71:8000/api/category/listmap')
       .then(res => {
         if(res.status === 0){
-          this.sorts = res.data
+          // 1. 赋值给左边数据
+          let data = res.data.splice(4)
+          this.sorts = data
+          // 2. 默认选择上第一个
+          this.sortId = data[0].id;
           console.log(res);
         }
-
-        // 初始化 
+        // 初始化
         // 需要设置 {click: true}否则不能点击
         new BScroll(this.$refs['left'],{click: true})
       })
     },
 
-    getlies(){
+    getBuys(){
       request
-      .get('http://129.204.72.71:8000/api/home/catelist/itemlist',{
-
-      }).then(res => {
-        if(res.status === 1){
-          this.lies = res.data
-          console.log(res);
+      .get('http://129.204.72.71:8000/api/catelist')
+      .then(res => {
+        if(res.status === 0){
+          this.buys = res.data;
+          console.log(res)
         }
       })
     },
 
     fn1(id){
-      this.sortId = id
+      this.$router.replace(`/sort/${id}`)
     }
   },
 
   created(){
     // 执行
     this.getSorts()
-    this.getlies()
+    this.getBuys()
   }
 }
 </script>

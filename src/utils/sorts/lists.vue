@@ -159,7 +159,7 @@ export default {
 
         getList(){
         request
-            .get('http://129.204.72.71:8000/api/catelist')
+            .get('http://129.204.72.71:8000/api/category/listmap/group/item')
             .then(res => {
                 if(res.status === 0){
                 this.lies = res.data

@@ -41,7 +41,7 @@ export default {
       request
         .get("/api/item/detail", {
           params: {
-            id: 3452043
+            id: 3452044
           }
         })
         .then(res => {
@@ -56,7 +56,7 @@ export default {
       request
         .get("/api/item/detail", {
           params: {
-            id: 3452043
+            id: 3452044
           }
         })
         .then(res => {

@@ -52,9 +52,9 @@
       <div class="format">
         <p class="tt">数量</p>
         <div class="num_add">
-          <div class="less">-</div>
-          <input type="text" value="1" class="num" />
-          <div class="more">+</div>
+          <button class="less" @click="less" :disabled="this.isDisable">-</button>
+          <input type="text" class="num" v-model="checkNum" />
+          <div class="more" @click="more">+</div>
         </div>
       </div>
     </div>
@@ -62,14 +62,14 @@
     <div class="detailFt">
       <div class="CustomerService" @click="back">返回</div>
       <div class="buy">立即购买</div>
-      <div class="add">加入购物车</div>
+      <div class="add" @click="add({data,checkSizeNum1,checkNum})">加入购物车</div>
     </div>
   </div>
 </template>
 
 <script>
 import wyHead from "../../components/wyHead/index";
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapMutations } from "vuex";
 
 export default {
   name: "productSelect",
@@ -78,7 +78,8 @@ export default {
     return {
       isActive: "",
       isActiveSize: "",
-      checkSizeNum: "请选择规格数量"
+      checkSizeNum: "请选择规格数量",
+      checkNum: 1
     };
   },
 
@@ -89,16 +90,29 @@ export default {
   computed: {
     ...mapState("product", ["data"]),
     checkSizeNum1() {
-      return (
-        this.$refs[this.isActive].innerHTML +
-          " " +
-          this.$refs[this.isActiveSize].innerHTML || checkSizeNum
-      );
+      let arr = [];
+
+      if (this.isActive) {
+        arr.push(this.$refs[this.isActive][0].innerHTML);
+      }
+      if (this.isActiveSize) {
+        arr.push(this.$refs[this.isActiveSize][0].innerHTML);
+      }
+      if (arr.length == 0) {
+        arr.push(this.checkSizeNum);
+      }
+      arr = arr.join(" ");
+      return arr;
+    },
+    isDisable() {
+      return this.checkNum === 1 ? true : false;
     }
   },
 
   methods: {
     ...mapActions("product", ["getData"]),
+    ...mapMutations("car", ["add"]),
+
     back() {
       this.$router.back();
     },
@@ -107,12 +121,20 @@ export default {
     },
     getFocusSize(id) {
       this.isActiveSize = id;
+    },
+    more() {
+      this.checkNum++;
+    },
+    less() {
+      this.checkNum--;
     }
   },
 
   created() {
     this.getData();
-  }
+  },
+
+  mounted() {}
 };
 </script>
 
@@ -226,6 +248,7 @@ export default {
     width: 45px;
     border: 1px solid #999;
     box-sizing: border-box;
+    background-color: #fff;
   }
 
   .more {

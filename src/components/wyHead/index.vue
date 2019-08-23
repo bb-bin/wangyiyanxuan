@@ -4,10 +4,22 @@
     <router-link to="#" class="wy-product_title">网易严选</router-link>
     <div>
       <i class="iconfont iconfangdajing"></i>
-      <i class="iconfont icongouwuche"></i>
+      <i class="iconfont icongouwuche" @click="toCar"></i>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "myHead",
+
+  methods: {
+    toCar() {
+      this.$router.push("/car");
+    }
+  }
+};
+</script>
 
 <style lang="scss">
 .wy-product_head {

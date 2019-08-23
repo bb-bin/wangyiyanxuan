@@ -25,7 +25,7 @@ const routes = [
       },
       {
         path: "/topic",
-        component: () => import("./views/Home/topic.vue"),
+        component: () => import("./views/product/product.vue"),
         meta: {
           title: "识物"
         }

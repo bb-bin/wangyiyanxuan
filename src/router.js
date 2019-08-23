@@ -70,7 +70,11 @@ const routes = [
   },
   {
     path: "/product",
-    component: () => import("./views/Home/product.vue")
+    component: () => import("./views/product/product.vue")
+  },
+  {
+    path: "/productSelect",
+    component: () => import("./views/product/productSelect.vue")
   }
 ];
 

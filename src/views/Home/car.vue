@@ -47,13 +47,139 @@
           </div>
         </div>
       </li>
+      <li class="car_goods">
+        <div class="car_goods_check">
+          <input type="checkbox" />
+          <span></span>
+        </div>
+        <div class="car_goods_img">
+          <img
+            src="https://yanxuan-item.nosdn.127.net/e548e0cbf276b3569ebfdfc1df75988b.png?imageView&thumbnail=160x0&quality=75"
+          />
+        </div>
+        <div class="car_goods_box">
+          <p>
+            <span>抄底特惠</span>平滑密编清凉仿藤坐垫
+          </p>
+          <span class="goods_type">古藤色</span>
+          <div class="goods_price">
+            <span>￥26.9</span>
+            <span>￥29.9</span>
+          </div>
+          <div class="goods_selNum">
+            <span class="goods_less">-</span>
+            <input type="text" value="1" />
+            <span class="goods_more">+</span>
+          </div>
+        </div>
+      </li>
+      <li class="car_goods">
+        <div class="car_goods_check">
+          <input type="checkbox" />
+          <span></span>
+        </div>
+        <div class="car_goods_img">
+          <img
+            src="https://yanxuan-item.nosdn.127.net/e548e0cbf276b3569ebfdfc1df75988b.png?imageView&thumbnail=160x0&quality=75"
+          />
+        </div>
+        <div class="car_goods_box">
+          <p>
+            <span>抄底特惠</span>平滑密编清凉仿藤坐垫
+          </p>
+          <span class="goods_type">古藤色</span>
+          <div class="goods_price">
+            <span>￥26.9</span>
+            <span>￥29.9</span>
+          </div>
+          <div class="goods_selNum">
+            <span class="goods_less">-</span>
+            <input type="text" value="1" />
+            <span class="goods_more">+</span>
+          </div>
+        </div>
+      </li>
+      <li class="car_goods">
+        <div class="car_goods_check">
+          <input type="checkbox" />
+          <span></span>
+        </div>
+        <div class="car_goods_img">
+          <img
+            src="https://yanxuan-item.nosdn.127.net/e548e0cbf276b3569ebfdfc1df75988b.png?imageView&thumbnail=160x0&quality=75"
+          />
+        </div>
+        <div class="car_goods_box">
+          <p>
+            <span>抄底特惠</span>平滑密编清凉仿藤坐垫
+          </p>
+          <span class="goods_type">古藤色</span>
+          <div class="goods_price">
+            <span>￥26.9</span>
+            <span>￥29.9</span>
+          </div>
+          <div class="goods_selNum">
+            <span class="goods_less">-</span>
+            <input type="text" value="1" />
+            <span class="goods_more">+</span>
+          </div>
+        </div>
+      </li>
+      <li class="car_goods">
+        <div class="car_goods_check">
+          <input type="checkbox" />
+          <span></span>
+        </div>
+        <div class="car_goods_img">
+          <img
+            src="https://yanxuan-item.nosdn.127.net/e548e0cbf276b3569ebfdfc1df75988b.png?imageView&thumbnail=160x0&quality=75"
+          />
+        </div>
+        <div class="car_goods_box">
+          <p>
+            <span>抄底特惠</span>平滑密编清凉仿藤坐垫
+          </p>
+          <span class="goods_type">古藤色</span>
+          <div class="goods_price">
+            <span>￥26.9</span>
+            <span>￥29.9</span>
+          </div>
+          <div class="goods_selNum">
+            <span class="goods_less">-</span>
+            <input type="text" value="1" />
+            <span class="goods_more">+</span>
+          </div>
+        </div>
+      </li>
+      <li class="car_goods">
+        <div class="car_goods_check">
+          <input type="checkbox" />
+          <span></span>
+        </div>
+        <div class="car_goods_img">
+          <img
+            src="https://yanxuan-item.nosdn.127.net/e548e0cbf276b3569ebfdfc1df75988b.png?imageView&thumbnail=160x0&quality=75"
+          />
+        </div>
+        <div class="car_goods_box">
+          <p>
+            <span>抄底特惠</span>平滑密编清凉仿藤坐垫
+          </p>
+          <span class="goods_type">古藤色</span>
+          <div class="goods_price">
+            <span>￥26.9</span>
+            <span>￥29.9</span>
+          </div>
+          <div class="goods_selNum">
+            <span class="goods_less">-</span>
+            <input type="text" value="1" />
+            <span class="goods_more">+</span>
+          </div>
+        </div>
+      </li>
     </ul>
     <van-submit-bar :price="3050" button-text="提交订单" @submit="onSubmit">
       <van-checkbox v-model="checked">全选</van-checkbox>
-      <span slot="tip">
-        你的收货地址不支持同城送,
-        <span>修改地址</span>
-      </span>
     </van-submit-bar>
   </div>
 </template>
@@ -91,8 +217,10 @@ export default {
 
 <style lang="scss">
 .wy-car {
+  height: 100%;
   display: flex;
   flex-direction: column;
+
   .wy-car_top {
     width: 100%;
     display: flex;
@@ -143,6 +271,9 @@ export default {
 
   .car_goods_list {
     flex: 1;
+    overflow-y: auto;
+    padding-bottom: 50px;
+    box-sizing: border-box;
   }
 
   .car_goods {

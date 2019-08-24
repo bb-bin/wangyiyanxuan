@@ -113,59 +113,11 @@
                  <h1>类目热销</h1>
                </div>
                <div class="hj-get-list">
-               <div class="hj-get-left">
-                 <!-- gethead -->
-                   <!-- v-for="item in gethead" :key="item.categoryName" -->
-                 <!-- {{item.categoryName}} -->
-                    <h1>
-                      <p>热销好 </p>
-                       <span></span>
-                    </h1>
-                   
-                    <img src="https://yanxuan-item.nosdn.127.net/6fd807743e8e25472aca8b6b0b8f3039.png?imageView&quality=65&thumbnail=200x200" alt="" srcset="">
-
-               </div>
-               <div class="hj-get-left">
-                    <h1>
-                      <p>热销好</p>
-                       <span></span>
-                    </h1>
-                   
-                    <img src="https://yanxuan-item.nosdn.127.net/6fd807743e8e25472aca8b6b0b8f3039.png?imageView&quality=65&thumbnail=200x200" alt="" srcset="">
-
-               </div>
-               <div class="hj-get-home">
-                         <h2>美食酒水榜</h2>
-                         <img src="https://yanxuan-item.nosdn.127.net/c0b3d87a8066b33c68294ce60f8e1920.png?imageView&quality=65&thumbnail=200x200" alt="">
+               <div class="hj-get-home" v-for="item in gethead" :key="item.categoryName">
+                         <h2>{{item.categoryName}}</h2>
+                         <img :src="item.picUrl" alt="">
                                   </div>
-                                    <div class="hj-get-home">
-                         <h2>美食酒水榜</h2>
-                         <img src="https://yanxuan-item.nosdn.127.net/c0b3d87a8066b33c68294ce60f8e1920.png?imageView&quality=65&thumbnail=200x200" alt="">
-                                  </div>
-                                    <div class="hj-get-home">
-                         <h2>美食酒水榜</h2>
-                         <img src="https://yanxuan-item.nosdn.127.net/c0b3d87a8066b33c68294ce60f8e1920.png?imageView&quality=65&thumbnail=200x200" alt="">
-                                  </div> 
-                                   <div class="hj-get-home">
-                         <h2>美食酒水榜</h2>
-                         <img src="https://yanxuan-item.nosdn.127.net/c0b3d87a8066b33c68294ce60f8e1920.png?imageView&quality=65&thumbnail=200x200" alt="">
-                                  </div>
-                                   <div class="hj-get-home">
-                         <h2>美食酒水榜</h2>
-                         <img src="https://yanxuan-item.nosdn.127.net/c0b3d87a8066b33c68294ce60f8e1920.png?imageView&quality=65&thumbnail=200x200" alt="">
-                                  </div>
-                                    <div class="hj-get-home">
-                         <h2>美食酒水榜</h2>
-                         <img src="https://yanxuan-item.nosdn.127.net/c0b3d87a8066b33c68294ce60f8e1920.png?imageView&quality=65&thumbnail=200x200" alt="">
-                                  </div>
-                                    <div class="hj-get-home">
-                         <h2>美食酒水榜</h2>
-                         <img src="https://yanxuan-item.nosdn.127.net/c0b3d87a8066b33c68294ce60f8e1920.png?imageView&quality=65&thumbnail=200x200" alt="">
-                                  </div> 
-                                   <div class="hj-get-home">
-                         <h2>美食酒水榜</h2>
-                         <img src="https://yanxuan-item.nosdn.127.net/c0b3d87a8066b33c68294ce60f8e1920.png?imageView&quality=65&thumbnail=200x200" alt="">
-                                  </div>
+                            
               </div>
               
           </div>
@@ -174,42 +126,18 @@
                             <h1>品牌制造商直供</h1> 
                               <h2><span>更多</span> <span class="iconfont iconjiantouyou"></span></h2>             
                </div>
-               <div class="box-hj-left">
-                    <img src="https://yanxuan-item.nosdn.127.net/89d86a4e463115e366daf841b9bcff46.png?imageView&quality=65&thumbnail=280x280" alt="">
-                    <div class="box-hj-right">
-                          <div class="box-1">
-                              <p>抄底特惠</p>
-                           <p>新色谁看见爱上</p>
-                           <span>公司社好的哈撒</span>
-                           <h3>$1949</h3>
-                          </div>
-                    </div>
-               </div>
+                <!-- getabout -->
                <div class="nav-hj">
-                         <div class="nav-hj-top">
-                           <img src="https://yanxuan-item.nosdn.127.net/d2abd30e0296cdee86f1bdd9242c0937.png?imageView&quality=65&thumbnail=330x330" alt="">
-                           <p>三生三世 少时诵诗书所所所所所<span>$179</span> </p>
+                         <div class="nav-hj-top" v-for="item in getabout" :key="item.id">
+                           <img :src="item.listPicUrl" alt="">
+                           <p>{{item.name}}<span>${{item.counterPrice}}</span> </p>
                          <div class="nav-hj-left">
+                           <!-- <h3>{{item.simpleDesc}}</h3> -->
                           <h4>特价</h4>
                          <h5>加价购</h5>
                          </div>
                          </div>
-                          <div class="nav-hj-top">
-                           <img src="https://yanxuan-item.nosdn.127.net/d2abd30e0296cdee86f1bdd9242c0937.png?imageView&quality=65&thumbnail=330x330" alt="">
-                           <p>三生三世 少时诵诗书所所所所<span>($179</span> </p>
-                         <div class="nav-hj-left">
-                          <h4>特价</h4>
-                         <h5>加价购</h5>
-                         </div>
-                         </div>
-                          <div class="nav-hj-top">
-                           <img src="https://yanxuan-item.nosdn.127.net/d2abd30e0296cdee86f1bdd9242c0937.png?imageView&quality=65&thumbnail=330x330" alt="">
-                           <p>三生三世 少时诵诗书所所所所<span>($179</span> </p>
-                         <div class="nav-hj-left">
-                          <h4>特价</h4>
-                         <h5>加价购</h5>
-                         </div>
-                         </div>
+                        
                </div>
           </div>
           <div class="a-box">
@@ -242,36 +170,12 @@
                <!-- v-for="item in getaboutList" :key="item.id" -->
                <!-- item.listPicUrl -->
               <div class="h-box-left">
-               <div class="h-box-right">
-                    <img src="https://yanxuan-item.nosdn.127.net/2fa8e674142d221f42dfbf277ac2279c.png?imageView&quality=65&thumbnail=330x330" alt="">
+               <div class="h-box-right" v-for="item in getaboutList" :key="item.id">
+                    <img :src="item.listPicUrl" alt="">
 
-                   <span>女式经典皮面小白鞋<span></span>$200</span>
+                   <span>{{item.name}}<span></span>${{item.counterPrice}}</span>
                </div>
-                <div class="h-box-right">
-                    <img src="https://yanxuan-item.nosdn.127.net/2fa8e674142d221f42dfbf277ac2279c.png?imageView&quality=65&thumbnail=330x330" alt="">
-
-                   <span>女式经典皮面小白鞋<span></span>$200</span>
-               </div>
-                <div class="h-box-right">
-                    <img src="https://yanxuan-item.nosdn.127.net/2fa8e674142d221f42dfbf277ac2279c.png?imageView&quality=65&thumbnail=330x330" alt="">
-
-                   <span>女式经典皮面小白鞋<span></span>$200</span>
-               </div>
-                <div class="h-box-right">
-                    <img src="https://yanxuan-item.nosdn.127.net/2fa8e674142d221f42dfbf277ac2279c.png?imageView&quality=65&thumbnail=330x330" alt="">
-
-                   <span>女式经典皮面小白鞋<span></span>$200</span>
-               </div>
-                <div class="h-box-right">
-                    <img src="https://yanxuan-item.nosdn.127.net/2fa8e674142d221f42dfbf277ac2279c.png?imageView&quality=65&thumbnail=330x330" alt="">
-
-                   <span>女式经典皮面小白鞋<span></span>$200</span>
-               </div>
-                <div class="h-box-right">
-                    <img src="https://yanxuan-item.nosdn.127.net/2fa8e674142d221f42dfbf277ac2279c.png?imageView&quality=65&thumbnail=330x330" alt="">
-
-                   <span>女式经典皮面小白鞋<span></span>$200</span>
-               </div>
+               
               </div>
           </div>
           <div class="h-home">
@@ -357,7 +261,7 @@ export default {
     },//首页分类列表接口
     getlistCat(){
      request.get('https://www.littleemmayang.com/api/policylist').then(res =>{
-       console.log(res);
+      //  console.log(res);
           if(res.status === 0){
           this.getlistCathome =res.data
           //  console.log(this.getlistCathome)
@@ -375,19 +279,19 @@ export default {
     },//品牌制造商直供接口
     getall(){
      request.get('https://www.littleemmayang.com/api/home/catehotsell').then(res =>{
-       console.log(res);
+      //  console.log(res);
           if(res.status === 0){
           this.gethead =res.data.categoryList
-           console.log(this.gethead)
+          //  console.log(this.gethead)
         }
      })      
     },//类目热销榜接口
      getlist(){
      request.get('https://www.littleemmayang.com/api/home/popularlist').then(res =>{
-      //  console.log(res);
+       console.log(res);
           if(res.status === 0){
           this.getabout =res.data
-          //  console.log(this.getabout)
+           console.log(this.getabout)
         }
      })      
     },//人气推荐接口
@@ -743,15 +647,31 @@ ul{
       flex-wrap: wrap;
       align-content: flex-start;
       justify-content: space-between;
-
-   .hj-get-left{
+//上班随便删除
+   .hj-get-home:nth-of-type(1){
      width: 48.5%;
      height: 100px;
      background: #F9F3E4;
      display: flex;
      justify-content: space-between;
      margin: 0 5px 5px 0;
-     h1{
+     h2{
+       line-height: 100px;
+       margin-left: 10%;
+     }
+     img{
+       width: 100px;
+       height: 100px;
+     }
+   }
+   .hj-get-home:nth-of-type(2){
+     width: 48.5%;
+     height: 100px;
+     background: #F9F3E4;
+     display: flex;
+     justify-content: space-between;
+     margin: 0 5px 5px 0;
+     h2{
        line-height: 100px;
        margin-left: 10%;
      }
@@ -787,29 +707,32 @@ ul{
     //  padding: 0 15px;
     //  box-sizing: border-box；
    }
-   .box-hj-left{
-     height: 140px;
-     background:  #FEF0DF;
-     display: flex;
-     justify-content: space-between;
-     img{
-       width: 140px
-     }
-     .box-hj-right{
-       flex: 1;
+
+  //  .box-hj-left{
+  //    height: 140px;
+  //    background:  #FEF0DF;
+  //    display: flex;
+  //    justify-content: space-between;
+  //    img{
+  //      width: 140px
+  //    }
+  //    .box-hj-right{
+  //      flex: 1;
       
-       .box-1{
-           margin-top: 22px;
-           line-height: 14px;
-       }
-     }
-   }
+  //      .box-1{
+  //          margin-top: 22px;
+  //          line-height: 14px;
+  //      }
+  //    }
+  //  }
    .nav-hj{
      height: 177px;
     //  background: #FEF0DF;
      margin-top:15px; 
      display: flex;
      justify-content: space-between;
+       flex-wrap: wrap;
+
      .nav-hj-top{
        width: 31%;
        height: 177px;
@@ -818,24 +741,60 @@ ul{
          height: 108px;
          background: #F5F5F5;
        }
+        p{
+         
+       span{
+      //  margin-top:10px; 
+      color: red;
+            }
+      }
        .nav-hj-left{
          display: flex;
          text-align: center;
          h4{
            width: 33px;
            height: 16px;
-           border: 1px solid red;
+           border: 1px solid #CE2424;
            border-radius:11px; 
          }
          h5{
            width: 43px;
            height: 16px;
-           border: 1px solid red;
+           border: 1px solid #CE2424;
            border-radius:11px;
            margin-left:6px; 
          }
        }
      }
+  .nav-hj-top:nth-of-type(1){
+    width: 100%;
+     height: 140px;
+     background:  #FEF0DF;
+     display: flex;
+     justify-content: space-between;
+     margin-bottom:10px;
+     img{
+       width: 130px;
+       height: 100%;
+     }
+        p{
+           margin-top:50px; 
+       span{
+      //  margin-top:10px; 
+      color: red;
+            }
+      }
+    .nav-hj-left{
+        
+         h4{
+          display: none;
+         
+         }
+         h5{
+          display: none;
+         }
+       }
+   }
    }
  }
  .a-box{
@@ -916,6 +875,16 @@ ul{
         height: 108px;
         background: #F5F5F5;
       }
+      // span:nth-of-type(2){
+      //       color: red;
+      //       display: inline-block;
+      // }
+    }
+    .h-box-right:nth-of-type(7){
+      display: none;
+    }
+    .h-box-right:nth-of-type(8){
+      display: none;
     }
   }
 }

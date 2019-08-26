@@ -37,11 +37,11 @@ export default {
   },
 
   actions: {
-    getImgUrl({ commit }) {
+    getImgUrl({ commit }, payload) {
       request
         .get("/api/item/detail", {
           params: {
-            id: 3452044
+            id: payload
           }
         })
         .then(res => {
@@ -52,11 +52,11 @@ export default {
           }
         });
     },
-    getData({ commit }) {
+    getData({ commit }, payload) {
       request
         .get("/api/item/detail", {
           params: {
-            id: 3452044
+            id: payload
           }
         })
         .then(res => {

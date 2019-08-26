@@ -102,7 +102,7 @@
         <i class="iconfont iconkefu"></i>
       </div>
       <div class="buy">立即购买</div>
-      <div class="add">加入购物车</div>
+      <div class="add" @click="toSelect">加入购物车</div>
     </div>
 
     <van-area
@@ -205,7 +205,9 @@ export default {
   },
 
   created() {
-    this.getImgUrl();
+        console.log(this.$route.query.id);
+
+    this.getImgUrl(this.$route.query.id);
   },
 
   components: {

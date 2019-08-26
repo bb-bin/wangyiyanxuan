@@ -12,7 +12,7 @@ export default {
 
   getters: {
     total(state) {
-      console.log(state.checkedIds);
+      // console.log(state.checkedIds);
 
       let checkedGoods = state.cars.filter(item => {
         return state.checkedIds.indexOf(item.data.id) > -1;
@@ -46,7 +46,7 @@ export default {
     },
 
     more(state, payload) {
-      console.log(payload);
+      // console.log(payload);
 
       let index = state.cars.findIndex(item => {
         return item.data.id === payload.data.id;
@@ -59,17 +59,22 @@ export default {
     },
 
     less(state, payload) {
-      console.log(state);
-      console.log(payload);
+      // console.log(state);
+      // console.log(payload);
 
-      if (payload.checkNum > 1) {
+      // if (payload.checkNum > 1) {
+        console.log(state.cars);
+        
         let index = state.cars.findIndex(item => {
           return item.data.id === payload.data.id;
         });
         if (index > -1) {
           let obj = state.cars[index];
           obj.checkNum--;
-        }
+          if(obj.checkNum == 0){
+            state.cars.splice(index, 1)
+          }
+        // }
         window.localStorage.setItem("cars", JSON.stringify(state.cars));
       }
     },

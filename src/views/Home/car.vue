@@ -56,6 +56,7 @@
 <script>
 import request from "../../utils/request";
 import { mapState, mapGetters, mapMutations } from "vuex";
+import {Toast} from 'vant'
 
 export default {
   data() {
@@ -75,7 +76,6 @@ export default {
         return this.$store.state.car.checkedIds;
       },
       set(value) {
-        console.log(value);
         this.$store.commit("car/setCheckedIds", value);
       }
     }
@@ -84,22 +84,22 @@ export default {
   methods: {
     ...mapMutations("car", ["more", "less"]),
     onSubmit() {
-      console.log("提交订单事件");
-    },
-    getBrand() {
-      request
-        .get("http://129.204.72.71:8000/api/item/detail?id=3452043")
-        .then(res => {
-          // if(res.code === '200'){
-          console.log(res);
-          // }
-        });
+      Toast('没钱别乱点！！');
     }
+    // getBrand() {
+    //   request
+    //     .get("http://129.204.72.71:8000/api/item/detail?id=3452043")
+    //     .then(res => {
+    //       // if(res.code === '200'){
+    //       console.log(res);
+    //       // }
+    //     });
+    // }
   },
 
   created() {
-    this.getBrand();
-    console.log(this.$store.state.car);
+    // this.getBrand();
+    // console.log(this.$store.state.car);
   }
 };
 </script>

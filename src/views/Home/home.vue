@@ -100,7 +100,7 @@
                         </div>
                         <div class="list-top">
                           <!-- item.picUrl 背景图-->
-                          <div class="list-left"  v-for="item in getpao" :key="item.id" :style="{backgroundImage: 'url(' + item.picUrl + ')'}">
+                          <div class="list-left"  v-for="item in getpao" :key="item.id" :style="{backgroundImage: 'url(' + item.picUrl + ')'}" :ref="'brand'+item.id" @click="toProduct(item.id)">
                                      <h1>{{item.name}} </h1>
                                      <span>{{item.floorPrice}}元起 </span>
                                          
@@ -194,7 +194,7 @@
                   <div class="z-box-top" v-for="item in getworldCat" :key="item.id">
                     <img :src="item.titlePicUrl" alt="">
                     <div class="z-box-left">
-                       <div class="z-box-right"  v-for="it in item.itemList" :key="it.id">
+                       <div class="z-box-right"  v-for="it in item.itemList" :key="it.id"  :ref="'goods'+it.id" @click="toProduct(it.id)">
                          <img :src="it.listPicUrl" alt="">
                          <h1>{{it.name}} </h1>
                          <h2>${{it.counterPrice}}</h2>
@@ -240,6 +240,11 @@ export default {
     }
   },
   methods:{
+    toProduct(id){
+      this.$router.push(`./topic?id=${id}`)
+      console.log(id);
+      
+    },
     gethello(){
       request.get('http://129.204.72.71:8000/api/home/bannerlist').then(res =>{
          
@@ -282,7 +287,7 @@ export default {
       //  console.log(res);
           if(res.status === 0){
           this.gethead =res.data.categoryList
-          //  console.log(this.gethead)
+           console.log(this.gethead)
         }
      })      
     },//类目热销榜接口

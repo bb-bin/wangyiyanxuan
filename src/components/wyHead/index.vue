@@ -1,6 +1,6 @@
 <template>
   <div class="wy-product_head">
-    <i class="iconfont iconshouye"></i>
+    <i class="iconfont iconshouye" @click="toHome"></i>
     <router-link to="#" class="wy-product_title">网易严选</router-link>
     <div>
       <i class="iconfont iconfangdajing"></i>
@@ -16,6 +16,9 @@ export default {
   methods: {
     toCar() {
       this.$router.push("/car");
+    },
+    toHome(){
+      this.$router.push('/home')
     }
   }
 };

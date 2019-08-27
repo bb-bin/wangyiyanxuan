@@ -11,8 +11,8 @@
           <span class="tag">{{ data.promotionDesc }}</span>
           <p class="price">
             价格：
-            <span class="price_left">{{ data.retailPrice }}</span>&nbsp;
-            <s class="price_right">{{ data.counterPrice }}</s>
+            <span class="price_left">￥{{ data.retailPrice }}</span>&nbsp;
+            <s class="price_right">￥{{ data.counterPrice }}</s>
           </p>
           <p class="sku">
             已选择：
@@ -35,7 +35,7 @@
         </div>
       </div>
 
-      <div class="format" v-if="data.skuSpecList">
+      <div class="format" v-if="data.skuSpecList && data.skuSpecList[1]">
         <p class="tt">{{ data.skuSpecList[1].name }}</p>
         <div class="con">
           <div
@@ -83,6 +83,16 @@ export default {
     };
   },
 
+  created() {
+    this.getImgUrl(this.$route.query.id);
+    this.getData(this.$route.query.id);
+    // this.$store.state.product.data.skuSpecList[1]
+    //   ? (this.show = true)
+    //   : (this.show = false);
+  },
+
+  mounted() {},
+
   components: {
     wyHead
   },
@@ -106,11 +116,14 @@ export default {
     },
     isDisable() {
       return this.checkNum === 1 ? true : false;
+    },
+    dataList() {
+      return this.$store.state.product.data;
     }
   },
 
   methods: {
-    ...mapActions("product", ["getData"]),
+    ...mapActions("product", ["getData", "getImgUrl"]),
     ...mapMutations("car", ["add"]),
 
     back() {
@@ -128,15 +141,7 @@ export default {
     less() {
       this.checkNum--;
     }
-  },
-
-  created() {
-    console.log(this.$route.query.id);
-    
-    this.getData(this.$route.query.id);
-  },
-
-  mounted() {}
+  }
 };
 </script>
 
@@ -145,6 +150,7 @@ export default {
   overflow: hidden;
 
   .paramselect {
+    margin-bottom: 48px;
     margin-top: 44px;
     padding: 16px 15px;
   }
@@ -182,7 +188,7 @@ export default {
       color: #fff;
       background-color: #f48f18;
       margin-bottom: 4px;
-      width: 60px;
+      width: 72px;
       text-align: center;
       box-sizing: border-box;
     }

@@ -34,7 +34,7 @@
             <span class="goods_txt">{{ item.data.promotionDesc }}</span>
             {{ item.data.name }}
           </p>
-          <span class="goods_type">{{ item.checkSizeNum1 }}</span>
+          <span class="goods_type" @click="toSelect(item.data.id)">{{ item.checkSizeNum1 }}</span>
           <div class="goods_price">
             <span>￥{{ item.data.retailPrice }}</span>
             <s>￥{{ item.data.counterPrice }}</s>
@@ -48,7 +48,7 @@
       </li>
     </ul>
     <van-submit-bar :price="total*100" button-text="提交订单" @submit="onSubmit">
-      <van-checkbox v-model="checked">全选</van-checkbox>
+      <van-checkbox v-model="isAllCheck">全选</van-checkbox>
     </van-submit-bar>
   </div>
 </template>
@@ -56,21 +56,29 @@
 <script>
 import request from "../../utils/request";
 import { mapState, mapGetters, mapMutations } from "vuex";
-import {Toast} from 'vant'
+import { Toast } from "vant";
 
 export default {
   data() {
     return {
-      checked: false,
-      goodsNum: this.$store.state.car.cars[0]
-        ? this.$store.state.car.cars[0].checkNum
-        : 1
+      checked: false
     };
   },
 
   computed: {
     ...mapState("car", ["cars"]),
     ...mapGetters("car", ["total"]),
+
+    isAllCheck: {
+      get() {
+        return this.$store.getters["car/isAllCheck"];
+      },
+
+      set(value) {
+        this.$store.commit("car/toggleCheck", value);
+      }
+    },
+
     checkedIds: {
       get() {
         return this.$store.state.car.checkedIds;
@@ -84,8 +92,15 @@ export default {
   methods: {
     ...mapMutations("car", ["more", "less"]),
     onSubmit() {
-      Toast('没钱别乱点！！');
+      Toast("没钱别乱点！！");
+    },
+
+    toSelect(id) {
+      document.documentElement.scrollTop = 0;
+
+      this.$router.push(`/productSelect?id=${id}`);
     }
+
     // getBrand() {
     //   request
     //     .get("http://129.204.72.71:8000/api/item/detail?id=3452043")
@@ -99,7 +114,7 @@ export default {
 
   created() {
     // this.getBrand();
-    // console.log(this.$store.state.car);
+    console.log(this.$store.state.car);
   }
 };
 </script>
@@ -240,6 +255,11 @@ export default {
     line-height: 30px;
     font-size: 12px;
     color: #7f7f7f;
+    width: 210px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
   }
 
   .goods_price {

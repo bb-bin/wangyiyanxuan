@@ -11,6 +11,10 @@ export default {
   },
 
   getters: {
+    isAllCheck(state) {
+      return state.cars.length === state.checkedIds.length;
+    },
+
     total(state) {
       // console.log(state.checkedIds);
 
@@ -28,6 +32,15 @@ export default {
   },
 
   mutations: {
+    toggleCheck(state, payload) {
+      if (payload) {
+        let ids = state.cars.map(item => item.data.id);
+        state.checkedIds = ids;
+      } else {
+        state.checkedIds = [];
+      }
+    },
+
     add(state, payload) {
       let index = state.cars.findIndex(item => {
         return item.data.id === payload.data.id;
@@ -63,17 +76,17 @@ export default {
       // console.log(payload);
 
       // if (payload.checkNum > 1) {
-        console.log(state.cars);
-        
-        let index = state.cars.findIndex(item => {
-          return item.data.id === payload.data.id;
-        });
-        if (index > -1) {
-          let obj = state.cars[index];
-          obj.checkNum--;
-          if(obj.checkNum == 0){
-            state.cars.splice(index, 1)
-          }
+      console.log(state.cars);
+
+      let index = state.cars.findIndex(item => {
+        return item.data.id === payload.data.id;
+      });
+      if (index > -1) {
+        let obj = state.cars[index];
+        obj.checkNum--;
+        if (obj.checkNum == 0) {
+          state.cars.splice(index, 1);
+        }
         // }
         window.localStorage.setItem("cars", JSON.stringify(state.cars));
       }

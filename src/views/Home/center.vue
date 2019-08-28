@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div class="page-home-center">
      <div class="avatar" v-if="userInfo">
       <div class="avator-icon">
@@ -102,7 +102,6 @@
             </a>
           </div>
           <div class="login-nav"></div>
-          <Tabbar />
         </div>
 </template>
 
@@ -113,9 +112,6 @@ export default {
   name: "center",
   computed: {
     ...mapState('user', ['userInfo'])
-  },
-  components: {
-    Tabbar
   },
 };
 </script>

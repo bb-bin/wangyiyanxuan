@@ -182,7 +182,12 @@
         </h1>
       </div>
       <div class="a-box-left">
-        <div class="a-box-right" v-for="item in getaboutlist" :key="item.id">
+        <div
+          class="a-box-right"
+          v-for="item in getaboutlist"
+          :key="item.id"
+          @click="toProduct(item.id)"
+        >
           <img :src="item.picUrl" alt />
           <span>${{item.activityPrice}}</span>
           <s>${{item.originPrice}}</s>
@@ -201,7 +206,12 @@
       <!-- v-for="item in getaboutList" :key="item.id" -->
       <!-- item.listPicUrl -->
       <div class="h-box-left">
-        <div class="h-box-right" v-for="item in getaboutList" :key="item.id">
+        <div
+          class="h-box-right"
+          v-for="item in getaboutList"
+          :key="item.id"
+          @click="toProduct(item.id)"
+        >
           <img :src="item.listPicUrl" alt />
 
           <span>

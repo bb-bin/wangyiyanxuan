@@ -27,10 +27,10 @@
           ￥{{data.retailPrice}}
           <s class="old_price">￥{{data.counterPrice}}</s>
         </p>
-        <p class="price_text">
+        <span class="price_text">
           {{ data.promotionDesc }}
           <i class="iconfont iconjiantouyou"></i>
-        </p>
+        </span>
         <div class="describe">
           <div>
             <p class="price_name">{{ data.name }}</p>
@@ -53,7 +53,7 @@
         <i class="iconfont iconjiantouyou"></i>
       </div>
 
-      <div class="inner" @click="toSelect">
+      <div class="inner" @click="toSelect(data.id)" v-if="data.id">
         请选择规格数量
         <i class="iconfont iconjiantouyou"></i>
       </div>
@@ -136,6 +136,11 @@ export default {
     };
   },
 
+  created() {
+    console.log(this.$route.query.id);
+    this.getImgUrl(this.$route.query.id);
+  },
+
   computed: {
     ...mapState("product", [
       "imgUrl",
@@ -179,10 +184,10 @@ export default {
       this.closeAddress();
     },
 
-    toSelect() {
+    toSelect(id) {
       document.documentElement.scrollTop = 0;
 
-      this.$router.push("/productSelect");
+      this.$router.push(`/productSelect?id=${id}`);
     },
 
     /***滑动限制***/
@@ -202,12 +207,6 @@ export default {
       document.body.style.overflow = ""; //出现滚动条
       document.removeEventListener("touchmove", mo, false);
     }
-  },
-
-  created() {
-        console.log(this.$route.query.id);
-
-    this.getImgUrl(this.$route.query.id);
   },
 
   components: {
@@ -295,10 +294,7 @@ export default {
     }
 
     .price_text {
-      display: block;
-      width: 64px;
       line-height: 18px;
-      height: 18px;
       padding: 0 8px;
       font-size: 12px;
       border: 1px solid #b4282d;
